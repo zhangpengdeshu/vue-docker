@@ -1,8 +1,8 @@
 FROM hub.c.163.com/library/nginx
 MAINTAINER zhangpengdeshu@163.com
-RUN rm /etc/nginx/conf.d/default.conf
-RUN npm install
-RUN npm run build
-ADD default.conf /etc/nginx/conf.d/
+#把当前打包工程的html复制到虚拟地址
 COPY dist/ /usr/share/nginx/html/
-EXPOSE 80
+#使用自定义nginx.conf配置端口和监听
+RUN rm /etc/nginx/conf.d/default.conf
+ADD default.conf /etc/nginx/conf.d/
+RUN /bin/bash -c 'echo init ok!!!'
